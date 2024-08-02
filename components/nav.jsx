@@ -9,7 +9,8 @@ export default function Nav() {
           alt="flower"
           width={1000}
           height={200}
-          className="m-auto"></Image>
+          className="m-auto"
+          priority></Image>
       </div>
     </>
   );
