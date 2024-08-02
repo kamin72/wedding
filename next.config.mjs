@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === "production";
-const repoName = "wedding"; // 替换为你的仓库名
-
+const repoName = "wedding";
 const nextConfig = {
   basePath: isProd ? `/${repoName}` : "",
   assetPrefix: isProd ? `/${repoName}/` : "",

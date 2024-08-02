@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 export default function Nav() {
+  const repoName = "wedding";
   const basePath = process.env.NODE_ENV === "production" ? `/${repoName}` : "";
   return (
     <>
