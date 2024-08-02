@@ -15,7 +15,6 @@ export default function Home() {
         crossorigin></Script>
       <Layout>
         <Nav></Nav>
-
         <Carousel></Carousel>
       </Layout>
     </>
