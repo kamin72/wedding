@@ -5,7 +5,7 @@ export default function Nav() {
     <>
       <div className="text-center">
         <Image
-          src="./flower.PNG"
+          src="/flower.PNG"
           alt="flower"
           width={1000}
           height={200}
