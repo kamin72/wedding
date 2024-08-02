@@ -1,13 +1,12 @@
 import Image from "next/image";
-import flowerImage from "../public/flower.PNG";
 
 export default function Nav() {
-  //   const basePath = process.env.NODE_ENV === "production" ? `/${repoName}` : "";
+  const basePath = process.env.NODE_ENV === "production" ? `/${repoName}` : "";
   return (
     <>
       <div className="text-center">
         <Image
-          src={flowerImage}
+          src={`${basePath}/flower.PNG`}
           alt="flower"
           width={1000}
           height={200}
