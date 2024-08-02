@@ -12,7 +12,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  publicPath: process.env.NODE_ENV === "production" ? `/${repoName}` : "/",
+  publicPath: isProd ? `/${repoName}/` : "/",
 };
 
 export default nextConfig;
