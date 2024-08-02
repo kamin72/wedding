@@ -12,7 +12,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  publicPath: isProd ? `/${repoName}/` : "/",
 };
 
 export default nextConfig;
