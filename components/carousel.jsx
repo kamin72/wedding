@@ -48,22 +48,22 @@ function SingleImageCarousel() {
 @keyframes fadeOut {
   0% {
     opacity: 1;
-    transform:  translateX(0) translateY(-20%);
+    transform:  translateX(0) translateY(-5%);
   }
   100% {
     opacity: 0;
-    transform:  translateX(-20%) translateY(-30%);
+    transform:  translateX(-20%) translateY(-20%);
   }
 }
 
 @keyframes fadeInRight {
   0% {
     opacity: 0;
-    transform: translateX(20%) translateY(-30%);
+    transform: translateX(20%) translateY(-20%);
   }
   100% {
     opacity: 1;
-    transform: translateX(0) translateY(-20%);
+    transform: translateX(0) translateY(-5%);
   }
 }
 
@@ -82,6 +82,12 @@ function SingleImageCarousel() {
 .carousel-fade-slide .carousel-item-next {
   animation: fadeInRight 6s ease-out both;
 }
+
+.carousel-inner{
+ transform: translateX(0) translateY(-20%);
+}
+
+
 
  /* 隐藏轮播控制按钮 */
 .carousel-control-prev,

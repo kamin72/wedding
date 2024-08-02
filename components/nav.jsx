@@ -10,7 +10,7 @@ export default function Nav() {
           alt="flower"
           width={1000}
           height={200}
-          className="m-auto"
+          className="m-auto position-relative z-1"
           priority></Image>
       </div>
     </>
