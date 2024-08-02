@@ -11,6 +11,7 @@ export default function Document() {
           crossorigin="anonymous"
         />
       </Head>
+
       <body>
         <Main />
         <NextScript />
