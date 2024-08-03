@@ -10,15 +10,12 @@ export default function Home() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (socket) {
-        socket.onopen = () => console.log("WebSocket connected");
-        socket.onmessage = (event) => {
-          setMessages((prev) => [...prev, event.data]);
-        };
-        socket.onerror = (error) => console.error("WebSocket error:", error);
-        socket.onclose = () => console.log("WebSocket disconnected");
-      }
+    if (socket) {
+      socket.onopen = () => console.log("WebSocket connected");
+      socket.onmessage = (event) => {
+        setMessages((prev) => [...prev, event.data]);
+      };
+      socket.onerror = (error) => console.error("WebSocket error:", error);
     }
   }, [socket]);
 
