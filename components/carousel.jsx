@@ -12,8 +12,8 @@ function SingleImageCarousel() {
       fill="#fc037f"
       version="1.1"
       id="Capa_1"
-      width="150px"
-      height="100px"
+      width="300px"
+      height="200px"
       viewBox="0 0 49.618 49.619"
       xml:space="preserve">
       <g>
@@ -42,13 +42,13 @@ function SingleImageCarousel() {
       <style>
         {`
   .w-40{
-  width: 40%;
+  width: 60%;
   }
 
 @keyframes fadeOut {
   0% {
     opacity: 1;
-    transform:  translateX(0) translateY(-5%);
+    transform:  translateX(0) translateY(0);
   }
   100% {
     opacity: 0;
@@ -63,7 +63,7 @@ function SingleImageCarousel() {
   }
   100% {
     opacity: 1;
-    transform: translateX(0) translateY(-5%);
+    transform: translateX(0) translateY(0);
   }
 }
 
@@ -113,7 +113,7 @@ function SingleImageCarousel() {
           activeIndex={index}
           onSelect={handleSelect}
           interval={3000}
-          className="carousel-fade-slide pt-2">
+          className="carousel-fade-slide ">
           {data.map((image) => (
             <Carousel.Item key={image.id} className="w-100">
               <Image

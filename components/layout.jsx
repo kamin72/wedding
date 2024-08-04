@@ -9,7 +9,9 @@ export default function Layout({ children }) {
         `}
       </style>
 
-      <div className="container bg-color">{children}</div>
+      <main className="bg-color ">
+        <div className="container">{children}</div>
+      </main>
     </>
   );
 }
