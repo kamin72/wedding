@@ -29,7 +29,7 @@ export default function Home() {
             },
           },
         ]);
-        setTimeout(() => clearMessage(id), 2000);
+        setTimeout(() => clearMessage(id), 20000);
       };
       socket.onerror = (error) => console.error("WebSocket error:", error);
     }
