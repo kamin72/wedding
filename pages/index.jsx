@@ -6,6 +6,7 @@ import { useEffect, useState, useCallback } from "react";
 import VivusAnimation from "../components/svg";
 import Vivus from "vivus";
 import Image from "next/image";
+import Nav from "../components/nav";
 
 export default function Home() {
   const repoName = "wedding";
@@ -96,6 +97,7 @@ export default function Home() {
         src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"
         crossorigin></Script>
       <Layout>
+        <Nav></Nav>
         <section
           className="position-relative W-100"
           style={{ paddingTop: "100px" }}>
@@ -115,7 +117,7 @@ export default function Home() {
               <Carousel />
             </div>
             <Image
-              src={`${basePath}/flower-01.PNG`}
+              src={"/public/wedding/flower-01.png"}
               alt=""
               width={500}
               height={800}
