@@ -9,6 +9,7 @@ const nextConfig = {
     domains: ["lh3.googleusercontent.com"],
     unoptimized: true,
   },
+  trailingSlash: true,
 };
 
 export default nextConfig;
