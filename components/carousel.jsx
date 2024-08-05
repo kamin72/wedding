@@ -41,9 +41,7 @@ function SingleImageCarousel() {
     <>
       <style>
         {`
-  .w-40{
-  width: 60%;
-  }
+ 
 
 @keyframes fadeOut {
   0% {
@@ -70,12 +68,13 @@ function SingleImageCarousel() {
 .carousel-fade-slide .carousel-item {
   opacity: 0;
   transition: opacity 6s ease-out, transform 6s ease-out;
+
 }
 
 .carousel-fade-slide .carousel-item.active {
   opacity: 1;
   position: relative;
-  transform: translateX(0) translateY(-20%);
+  transform: translateX(0) translateY(0);
   animation: fadeOut 2s ease-out both;
 }
 
@@ -84,7 +83,7 @@ function SingleImageCarousel() {
 }
 
 .carousel-inner{
- transform: translateX(0) translateY(-20%);
+ transform: translateX(0) translateY(0);
 }
 
 
@@ -101,19 +100,12 @@ function SingleImageCarousel() {
         `}
       </style>
 
-      <VivusAnimation
-        id="mySvg"
-        svg={svgString}
-        options={vivusOptions}
-        interval={5000}
-      />
-
-      <div className="pb-5 m-auto w-40">
+      <div className="pb-5 m-auto w-100 ">
         <Carousel
           activeIndex={index}
           onSelect={handleSelect}
           interval={3000}
-          className="carousel-fade-slide ">
+          className="carousel-fade-slide">
           {data.map((image) => (
             <Carousel.Item key={image.id} className="w-100">
               <Image
@@ -121,7 +113,7 @@ function SingleImageCarousel() {
                 alt={image.id}
                 width={800}
                 height={900}
-                className="w-100 h-25 object-fit-contain"
+                className="w-100 h-50 object-fit-contain "
                 priority
               />
               <Carousel.Caption>
