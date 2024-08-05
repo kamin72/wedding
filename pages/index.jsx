@@ -116,7 +116,7 @@ export default function Home() {
               <Carousel />
             </div>
             <Image
-              src={`https://kamin72.github.io/${repoName}/flower-01.PNG`}
+              src={`${basePath}/flower-01.PNG`}
               alt=""
               width={500}
               height={800}
@@ -125,7 +125,7 @@ export default function Home() {
               style={{ top: "-8%", left: "5%" }}
             />{" "}
             <Image
-              src={`https://kamin72.github.io/${repoName}/flower-02.PNG`}
+              src={`${basePath}/flower-02.PNG`}
               alt=""
               width={500}
               height={500}
@@ -134,7 +134,7 @@ export default function Home() {
               style={{ top: "-8%", right: "8%" }}
             />{" "}
             <Image
-              src={`https://kamin72.github.io/${repoName}/flower-03.PNG`}
+              src={`${basePath}/flower-03.PNG`}
               alt=""
               width={500}
               height={500}
@@ -143,7 +143,7 @@ export default function Home() {
               style={{ bottom: "-8%" }}
             />
             <Image
-              src={`https://kamin72.github.io/${repoName}/flower-04.PNG`}
+              src={`${basePath}/flower-04.PNG`}
               alt=""
               width={400}
               height={900}
