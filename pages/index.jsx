@@ -9,6 +9,9 @@ import Vivus from "vivus";
 import Image from "next/image";
 
 export default function Home() {
+  const repoName = "wedding";
+  const basePath = process.env.NODE_ENV === "production" ? `/${repoName}` : "";
+
   const svgString = `<svg
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -113,7 +116,7 @@ export default function Home() {
               <Carousel />
             </div>
             <Image
-              src="/flower-01.png"
+              src={`${basePath}/flower-01.PNG`}
               alt=""
               width={500}
               height={800}
@@ -122,7 +125,7 @@ export default function Home() {
               style={{ top: "-8%", left: "5%" }}
             />{" "}
             <Image
-              src="/flower-02.png"
+              src={`${basePath}/flower-02.PNG`}
               alt=""
               width={500}
               height={500}
@@ -131,7 +134,7 @@ export default function Home() {
               style={{ top: "-8%", right: "8%" }}
             />{" "}
             <Image
-              src="/flower-03.png"
+              src={`${basePath}/flower-03.PNG`}
               alt=""
               width={500}
               height={500}
@@ -140,7 +143,7 @@ export default function Home() {
               style={{ bottom: "-8%" }}
             />
             <Image
-              src="/flower-04.png"
+              src={`${basePath}/flower-04.PNG`}
               alt=""
               width={400}
               height={900}
