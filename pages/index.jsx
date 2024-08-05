@@ -1,7 +1,6 @@
 import Carousel from "../components/carousel";
 import Script from "next/script";
 import Layout from "../components/layout";
-import Nav from "../components/nav";
 import { useWebSocket } from "../lib/websocket";
 import { useEffect, useState, useCallback } from "react";
 import VivusAnimation from "../components/svg";
@@ -116,7 +115,7 @@ export default function Home() {
               <Carousel />
             </div>
             <Image
-              src={`${basePath}/flower-01.PNG`}
+              src={`/flower-01.PNG`}
               alt=""
               width={500}
               height={800}
@@ -125,7 +124,7 @@ export default function Home() {
               style={{ top: "-8%", left: "5%" }}
             />{" "}
             <Image
-              src={`${basePath}/flower-02.PNG`}
+              src={`/flower-02.PNG`}
               alt=""
               width={500}
               height={500}
@@ -134,7 +133,7 @@ export default function Home() {
               style={{ top: "-8%", right: "8%" }}
             />{" "}
             <Image
-              src={`${basePath}/flower-03.PNG`}
+              src={`/flower-03.PNG`}
               alt=""
               width={500}
               height={500}
@@ -143,7 +142,7 @@ export default function Home() {
               style={{ bottom: "-8%" }}
             />
             <Image
-              src={`${basePath}/flower-04.PNG`}
+              src={`/flower-04.PNG`}
               alt=""
               width={400}
               height={900}
