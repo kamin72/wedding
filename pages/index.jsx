@@ -9,8 +9,8 @@ import Image from "next/image";
 import Nav from "../components/nav";
 
 export default function Home() {
-  // const repoName = "wedding";
-  // const basePath = process.env.NODE_ENV === "production" ? `/${repoName}` : "";
+  const repoName = "wedding";
+  const basePath = process.env.NODE_ENV === "production" ? `/${repoName}` : "";
 
   const svgString = `<svg
       xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +116,7 @@ export default function Home() {
               <Carousel />
             </div>
             <Image
-              src={"/images/flower-01.png"}
+              src={`${basePath}/images/flower-01.png`}
               alt=""
               width={500}
               height={800}
@@ -125,7 +125,7 @@ export default function Home() {
               style={{ top: "-8%", left: "5%" }}
             />{" "}
             <Image
-              src={`/images/flower-02.PNG`}
+              src={`${basePath}/images/flower-02.png`}
               alt=""
               width={500}
               height={500}
@@ -134,7 +134,7 @@ export default function Home() {
               style={{ top: "-8%", right: "8%" }}
             />{" "}
             <Image
-              src={`/images/flower-03.PNG`}
+              src={`${basePath}/images/flower-03.png`}
               alt=""
               width={500}
               height={500}
@@ -143,7 +143,7 @@ export default function Home() {
               style={{ bottom: "-8%" }}
             />
             <Image
-              src={`/images/flower-04.PNG`}
+              src={`${basePath}/images/flower-04.png`}
               alt=""
               width={400}
               height={900}
