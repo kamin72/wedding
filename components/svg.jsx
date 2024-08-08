@@ -46,7 +46,8 @@ const VivusAnimation = ({ id, svg, options, interval = 5000 }) => {
         {`
     
     .start-50{
-    left: 40% !important;
+    left: 39% !important;
+    top: 8% !important;
     }      
     
     `}

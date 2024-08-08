@@ -6,7 +6,6 @@ import { useEffect, useState, useCallback } from "react";
 import VivusAnimation from "../components/svg";
 import Vivus from "vivus";
 import Image from "next/image";
-import Nav from "../components/nav";
 
 export default function Home() {
   const repoName = "wedding";
@@ -19,7 +18,7 @@ export default function Home() {
       version="1.1"
       id="Capa_1"
       width="300px"
-      height="200px"
+      height="100px"
       viewBox="0 0 49.618 49.619"
       xml:space="preserve">
       <g>
@@ -65,6 +64,7 @@ export default function Home() {
       socket.onerror = (error) => console.error("WebSocket error:", error);
     }
   }, [socket, clearMessage]);
+  console.log(messages);
 
   return (
     <>
@@ -74,7 +74,7 @@ export default function Home() {
     width: 70% !important;
     }
 
-     @keyframes slider{
+    @keyframes slider{
       from {
         transform: translateX(100vw);
         }
@@ -85,7 +85,7 @@ export default function Home() {
       
       .msgs{
       animation: slider 5s linear infinite;
-      white-space: nowrap;
+      
       }
       `}
       </style>
@@ -98,7 +98,7 @@ export default function Home() {
         crossorigin></Script>
       <Layout>
         <section
-          className="position-relative W-100"
+          className="position-relative W-100 h-100"
           style={{ paddingTop: "100px" }}>
           <VivusAnimation
             id="mySvg"
@@ -106,11 +106,12 @@ export default function Home() {
             options={vivusOptions}
             interval={5000}
           />
-          <div className="position-relative">
+          <div className="position-relative h-100">
             <div
-              className="w-50 m-auto rounded-pill rounded-bottom-0 overflow-hidden position-relative z-1"
+              className="m-auto rounded-pill rounded-bottom-0 overflow-hidden position-relative z-1"
               style={{
-                height: "1250px",
+                width: "30%",
+                height: "90%",
                 border: "double 20px #7E4847",
               }}>
               <Carousel />
@@ -118,38 +119,38 @@ export default function Home() {
             <Image
               src={`${basePath}/images/flower-01.png`}
               alt=""
-              width={500}
-              height={800}
+              width={200}
+              height={300}
               priority
               className="position-absolute z-3"
-              style={{ top: "-8%", left: "5%" }}
+              style={{ top: "-6%", left: "32%" }}
             />{" "}
             <Image
               src={`${basePath}/images/flower-02.png`}
               alt=""
-              width={500}
-              height={500}
+              width={200}
+              height={200}
               priority
               className="position-absolute z-3"
-              style={{ top: "-8%", right: "8%" }}
+              style={{ top: "-6%", right: "32%" }}
             />{" "}
             <Image
               src={`${basePath}/images/flower-03.png`}
               alt=""
-              width={500}
-              height={500}
+              width={200}
+              height={200}
               priority
               className="position-absolute z-3"
-              style={{ bottom: "-8%" }}
+              style={{ bottom: "0%", left: "30%" }}
             />
             <Image
               src={`${basePath}/images/flower-04.png`}
               alt=""
-              width={400}
-              height={900}
+              width={150}
+              height={300}
               priority
               className="position-absolute z-3"
-              style={{ bottom: "-12%", right: "5%" }}
+              style={{ bottom: "0%", right: "33%" }}
             />
           </div>
           {messages.map((msg, index) => (
@@ -158,8 +159,9 @@ export default function Home() {
               style={{
                 top: msg.position.top,
                 position: "absolute",
-                fontSize: "48px",
-                width: "fit-content",
+                fontSize: "36px",
+                fontFamily: '"Edu AU VIC WA NT Hand", cursive',
+                width: "300px",
               }}
               className="msgs z-3">
               {msg.displayName}: {msg.message}

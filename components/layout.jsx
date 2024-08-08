@@ -12,7 +12,7 @@ export default function Layout({ children }) {
       <main
         className="bg-color vw-100 overflow-hidden"
         style={{ height: "2000px" }}>
-        <div className="container">{children}</div>
+        <div className="container vh-100">{children}</div>
       </main>
     </>
   );
