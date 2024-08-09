@@ -2,7 +2,7 @@ import Carousel from "../components/carousel";
 import Script from "next/script";
 import Layout from "../components/layout";
 import { useWebSocket } from "../lib/websocket";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import VivusAnimation from "../components/svg";
 import Vivus from "vivus";
 import Image from "next/image";
@@ -39,32 +39,49 @@ export default function Home() {
   //websocket
   const socket = useWebSocket(process.env.NEXT_PUBLIC_WEBSOCKET_URL);
   const [messages, setMessages] = useState([]);
-  const clearMessage = useCallback((id) => {
-    setMessages((prevMessages) => prevMessages.filter((msg) => msg.id !== id));
-  }, []);
+  const [visibleMessages, setVisibleMessages] = useState([]);
+
+  const addMessageGradually = useCallback(() => {
+    return (prev) => {
+      if (prev.length < messages.length) {
+        return [...prev, messages[prev.length]];
+      } else {
+        return prev;
+      }
+    };
+  }, [messages]);
+  console.log(visibleMessages);
 
   useEffect(() => {
     if (socket) {
       socket.onopen = () => console.log("WebSocket connected");
       socket.onmessage = (event) => {
         const newMsg = JSON.parse(event.data);
-        const id = Date.now();
-        setMessages((preMsg) => [
-          ...preMsg,
-          {
-            ...newMsg,
-            id,
-            position: {
-              top: `${Math.random() * 80}%`,
+        setMessages((prev) => {
+          let updateMsg = [
+            ...prev,
+            {
+              ...newMsg,
+              position: {
+                top: `${Math.random() * 80}%`,
+              },
             },
-          },
-        ]);
-        setTimeout(() => clearMessage(id), 20000);
+          ];
+          return updateMsg
+            .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp))
+            .slice(-20);
+        });
       };
       socket.onerror = (error) => console.error("WebSocket error:", error);
     }
-  }, [socket, clearMessage]);
-  // console.log(messages);
+  }, [socket]);
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setVisibleMessages(addMessageGradually()),
+      1000
+    );
+  }, [addMessageGradually]);
 
   return (
     <>
@@ -102,6 +119,27 @@ export default function Home() {
       padding: 5px 0;
       text-align: center;
       }
+
+      .msginfinite:nth-child(2n){
+      animation: slider 5s linear infinite;
+      color: white;
+      background-color: #808080;
+      width: 300px;
+      border-radius: 20px;
+      padding: 5px 0;
+      text-align: center;
+      }
+
+      .msginfinite:nth-child(2n-1){
+      animation: slider 5s linear infinite;
+      color: black;
+      background-color: white;
+      width: 300px;
+      border-radius: 20px;
+      padding: 5px 0;
+      text-align: center;
+      }
+
       `}
       </style>
 
@@ -138,7 +176,7 @@ export default function Home() {
               height={400}
               priority
               className="position-absolute z-3"
-              style={{ top: "-6%", left: "25%" }}
+              style={{ top: "-4%", left: "22%" }}
             />{" "}
             <Image
               src={`${basePath}/images/flower-02.png`}
@@ -147,7 +185,7 @@ export default function Home() {
               height={300}
               priority
               className="position-absolute z-3"
-              style={{ top: "-6%", right: "24%" }}
+              style={{ top: "-4%", right: "22%" }}
             />{" "}
             <Image
               src={`${basePath}/images/flower-03.png`}
@@ -168,23 +206,21 @@ export default function Home() {
               style={{ bottom: "8%", right: "20%" }}
             />
           </div>
-          {messages.map((msg, index) => {
-            let dateNow = new Date(msg.timeStamp);
-            if (dateNow >= Date.now() - 30000) {
-              return (
-                <p
-                  key={index}
-                  style={{
-                    top: msg.position.top,
-                    position: "absolute",
-                    fontSize: "36px",
-                    fontFamily: '"Edu AU VIC WA NT Hand", cursive',
-                  }}
-                  className="msgs z-3">
-                  {msg.displayName}: {msg.message}
-                </p>
-              );
-            }
+          {visibleMessages.map((msg, index) => {
+            return (
+              <p
+                key={index}
+                style={{
+                  top: msg.position.top,
+                  right: msg.position.right,
+                  position: "absolute",
+                  fontSize: "36px",
+                  fontFamily: '"Edu AU VIC WA NT Hand", cursive',
+                }}
+                className="msgs z-3">
+                {msg.displayName}: {msg.message}
+              </p>
+            );
           })}
         </section>
       </Layout>

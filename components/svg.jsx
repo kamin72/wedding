@@ -42,22 +42,11 @@ const VivusAnimation = ({ id, svg, options, interval = 5000 }) => {
 
   return (
     <>
-      <style>
-        {`
-    
-    .start-50{
-    left: 39% !important;
-    top: 8% !important;
-    }      
-    
-    `}
-      </style>
-
       <div
         id={id}
         ref={svgRef}
         dangerouslySetInnerHTML={{ __html: svg }}
-        className="w-25 position-absolute z-2 start-50 top-0"
+        className="w-25 m-auto"
       />
     </>
   );
