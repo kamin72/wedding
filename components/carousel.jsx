@@ -46,22 +46,22 @@ function SingleImageCarousel() {
 @keyframes fadeOut {
   0% {
     opacity: 1;
-    transform:  translateX(0) translateY(0);
+    transform:  translateX(-10%) translateY(0);
   }
   100% {
     opacity: 0;
-    transform:  translateX(-20%) translateY(-20%);
+    transform:  translateX(-40%) translateY(-20%);
   }
 }
 
 @keyframes fadeInRight {
   0% {
     opacity: 0;
-    transform: translateX(20%) translateY(-20%);
+    transform: translateX(50%) translateY(-20%);
   }
   100% {
     opacity: 1;
-    transform: translateX(0) translateY(0);
+    transform: translateX(-10%) translateY(0);
   }
 }
 
@@ -83,7 +83,7 @@ function SingleImageCarousel() {
 }
 
 .carousel-inner{
- transform: translateX(0) translateY(0);
+ transform: translateX(0%) translateY(-10%);
 }
 
 
@@ -113,7 +113,7 @@ function SingleImageCarousel() {
                 alt={image.id}
                 width={800}
                 height={900}
-                className="w-100 h-50 object-fit-contain "
+                className="w-200 h-50 object-fit-contain "
                 priority
               />
               <Carousel.Caption>

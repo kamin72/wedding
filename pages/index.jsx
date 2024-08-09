@@ -64,7 +64,7 @@ export default function Home() {
       socket.onerror = (error) => console.error("WebSocket error:", error);
     }
   }, [socket, clearMessage]);
-  console.log(messages);
+  // console.log(messages);
 
   return (
     <>
@@ -83,9 +83,24 @@ export default function Home() {
         }
       }
       
-      .msgs{
+      .msgs:nth-child(2n){
       animation: slider 5s linear infinite;
-      
+      color: white;
+      background-color: #808080;
+      width: 300px;
+      border-radius: 20px;
+      padding: 5px 0;
+      text-align: center;
+      }
+
+      .msgs:nth-child(2n-1){
+      animation: slider 5s linear infinite;
+      color: black;
+      background-color: white;
+      width: 300px;
+      border-radius: 20px;
+      padding: 5px 0;
+      text-align: center;
       }
       `}
       </style>
@@ -110,7 +125,7 @@ export default function Home() {
             <div
               className="m-auto rounded-pill rounded-bottom-0 overflow-hidden position-relative z-1"
               style={{
-                width: "30%",
+                width: "50%",
                 height: "90%",
                 border: "double 20px #7E4847",
               }}>
@@ -119,54 +134,58 @@ export default function Home() {
             <Image
               src={`${basePath}/images/flower-01.png`}
               alt=""
-              width={200}
-              height={300}
+              width={300}
+              height={400}
               priority
               className="position-absolute z-3"
-              style={{ top: "-6%", left: "32%" }}
+              style={{ top: "-6%", left: "25%" }}
             />{" "}
             <Image
               src={`${basePath}/images/flower-02.png`}
               alt=""
-              width={200}
-              height={200}
+              width={300}
+              height={300}
               priority
               className="position-absolute z-3"
-              style={{ top: "-6%", right: "32%" }}
+              style={{ top: "-6%", right: "24%" }}
             />{" "}
             <Image
               src={`${basePath}/images/flower-03.png`}
               alt=""
-              width={200}
-              height={200}
+              width={300}
+              height={300}
               priority
               className="position-absolute z-3"
-              style={{ bottom: "0%", left: "30%" }}
+              style={{ bottom: "5%", left: "18%" }}
             />
             <Image
               src={`${basePath}/images/flower-04.png`}
               alt=""
-              width={150}
-              height={300}
+              width={250}
+              height={400}
               priority
               className="position-absolute z-3"
-              style={{ bottom: "0%", right: "33%" }}
+              style={{ bottom: "8%", right: "20%" }}
             />
           </div>
-          {messages.map((msg, index) => (
-            <p
-              key={index}
-              style={{
-                top: msg.position.top,
-                position: "absolute",
-                fontSize: "36px",
-                fontFamily: '"Edu AU VIC WA NT Hand", cursive',
-                width: "300px",
-              }}
-              className="msgs z-3">
-              {msg.displayName}: {msg.message}
-            </p>
-          ))}
+          {messages.map((msg, index) => {
+            let dateNow = new Date(msg.timeStamp);
+            if (dateNow >= Date.now() - 30000) {
+              return (
+                <p
+                  key={index}
+                  style={{
+                    top: msg.position.top,
+                    position: "absolute",
+                    fontSize: "36px",
+                    fontFamily: '"Edu AU VIC WA NT Hand", cursive',
+                  }}
+                  className="msgs z-3">
+                  {msg.displayName}: {msg.message}
+                </p>
+              );
+            }
+          })}
         </section>
       </Layout>
     </>
