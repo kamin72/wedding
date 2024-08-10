@@ -42,13 +42,12 @@ export default function Home() {
   const [visibleMessages, setVisibleMessages] = useState([]);
 
   const addMessageGradually = useCallback(() => {
-    return (prev) => {
+    setVisibleMessages((prev) => {
       if (prev.length < messages.length) {
         return [...prev, messages[prev.length]];
-      } else {
-        return prev;
       }
-    };
+      return [];
+    });
   }, [messages]);
   console.log(visibleMessages);
 
@@ -77,10 +76,8 @@ export default function Home() {
   }, [socket]);
 
   useEffect(() => {
-    const interval = setInterval(
-      () => setVisibleMessages(addMessageGradually()),
-      1000
-    );
+    const interval = setInterval(addMessageGradually, 2000);
+    return () => clearInterval(interval);
   }, [addMessageGradually]);
 
   return (
@@ -101,7 +98,7 @@ export default function Home() {
       }
       
       .msgs:nth-child(2n){
-      animation: slider 5s linear infinite;
+      animation: slider 10s linear infinite;
       color: white;
       background-color: #808080;
       width: 300px;
@@ -111,7 +108,7 @@ export default function Home() {
       }
 
       .msgs:nth-child(2n-1){
-      animation: slider 5s linear infinite;
+      animation: slider 10s linear infinite;
       color: black;
       background-color: white;
       width: 300px;
@@ -120,25 +117,6 @@ export default function Home() {
       text-align: center;
       }
 
-      .msginfinite:nth-child(2n){
-      animation: slider 5s linear infinite;
-      color: white;
-      background-color: #808080;
-      width: 300px;
-      border-radius: 20px;
-      padding: 5px 0;
-      text-align: center;
-      }
-
-      .msginfinite:nth-child(2n-1){
-      animation: slider 5s linear infinite;
-      color: black;
-      background-color: white;
-      width: 300px;
-      border-radius: 20px;
-      padding: 5px 0;
-      text-align: center;
-      }
 
       `}
       </style>
