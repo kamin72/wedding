@@ -2,7 +2,7 @@ import Carousel from "../components/carousel";
 import Script from "next/script";
 import Layout from "../components/layout";
 import { useWebSocket } from "../lib/websocket";
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import VivusAnimation from "../components/svg";
 import Vivus from "vivus";
 import Image from "next/image";
@@ -39,17 +39,6 @@ export default function Home() {
   //websocket
   const socket = useWebSocket(process.env.NEXT_PUBLIC_WEBSOCKET_URL);
   const [messages, setMessages] = useState([]);
-  const [visibleMessages, setVisibleMessages] = useState([]);
-
-  const addMessageGradually = useCallback(() => {
-    setVisibleMessages((prev) => {
-      if (prev.length < messages.length) {
-        return [...prev, messages[prev.length]];
-      } else {
-        return messages;
-      }
-    });
-  }, [messages]);
 
   useEffect(() => {
     if (socket) {
@@ -76,10 +65,24 @@ export default function Home() {
     }
   }, [socket]);
 
+  const [visibleMessages, setVisibleMessages] = useState([]);
+
+  const addMessageGradually = useCallback(() => {
+    setVisibleMessages((prev) => {
+      if (prev.length < messages.length) {
+        return [...prev, messages[prev.length]];
+      } else {
+        return messages;
+      }
+    });
+  }, [messages]);
+
   useEffect(() => {
-    const interval = setInterval(addMessageGradually, 1000);
+    const interval = setInterval(addMessageGradually, 3000);
     return () => clearInterval(interval);
-  }, [addMessageGradually, messages]);
+  }, [addMessageGradually]);
+
+  console.log(visibleMessages);
 
   return (
     <>
@@ -196,7 +199,7 @@ export default function Home() {
                   fontSize: "36px",
                   fontFamily: '"Edu AU VIC WA NT Hand", cursive',
                 }}
-                className="msgs z-3">
+                className="msgs z-0">
                 {msg.displayName}: {msg.message}
               </p>
             );
