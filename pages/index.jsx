@@ -45,11 +45,11 @@ export default function Home() {
     setVisibleMessages((prev) => {
       if (prev.length < messages.length) {
         return [...prev, messages[prev.length]];
+      } else {
+        return messages;
       }
-      return [];
     });
   }, [messages]);
-  console.log(visibleMessages);
 
   useEffect(() => {
     if (socket) {
@@ -72,13 +72,14 @@ export default function Home() {
         });
       };
       socket.onerror = (error) => console.error("WebSocket error:", error);
+      return () => socket.close();
     }
   }, [socket]);
 
   useEffect(() => {
-    const interval = setInterval(addMessageGradually, 2000);
+    const interval = setInterval(addMessageGradually, 1000);
     return () => clearInterval(interval);
-  }, [addMessageGradually]);
+  }, [addMessageGradually, messages]);
 
   return (
     <>
