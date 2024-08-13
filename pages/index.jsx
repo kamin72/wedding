@@ -51,19 +51,31 @@ export default function Home() {
             {
               ...newMsg,
               position: {
-                top: `${Math.random() * 80}%`,
+                top: `${Math.random() * 60}%`,
               },
             },
           ];
-          return updateMsg
-            .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp))
-            .slice(-20);
+
+          if (
+            Date.now() -
+              new Date(updateMsg[updateMsg.length - 1].timeStamp).getTime() >
+            600000
+          ) {
+            return [...updateMsg].sort(
+              (a, b) => new Date(a.timeStamp) - new Date(b.timeStamp)
+            );
+          } else {
+            return [...updateMsg]
+              .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp))
+              .slice(-20);
+          }
         });
       };
       socket.onerror = (error) => console.error("WebSocket error:", error);
       return () => socket.close();
     }
   }, [socket]);
+  console.log(messages);
 
   const [visibleMessages, setVisibleMessages] = useState([]);
 
