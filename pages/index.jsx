@@ -39,6 +39,7 @@ export default function Home() {
   //websocket
   const socket = useWebSocket(process.env.NEXT_PUBLIC_WEBSOCKET_URL);
   const [messages, setMessages] = useState([]);
+  const [allMesg, setAllMesg] = useState([]);
 
   useEffect(() => {
     if (socket) {
@@ -51,46 +52,60 @@ export default function Home() {
             {
               ...newMsg,
               position: {
-                top: `${Math.random() * 60}%`,
+                top: `${Math.random() * 100 + 20}%`,
+                right: `${Math.random() * 150}%`,
               },
             },
           ];
 
-          if (
-            Date.now() -
-              new Date(updateMsg[updateMsg.length - 1].timeStamp).getTime() >
-            600000
-          ) {
-            return [...updateMsg].sort(
-              (a, b) => new Date(a.timeStamp) - new Date(b.timeStamp)
-            );
-          } else {
-            return [...updateMsg]
-              .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp))
-              .slice(-20);
-          }
+          return [...updateMsg]
+            .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp))
+            .slice(-20);
+        });
+
+        setAllMesg((prev) => {
+          return [
+            ...prev,
+            {
+              ...newMsg,
+              position: {
+                top: `${Math.random() * 100 + 20}%`,
+                right: `${Math.random() * 150}%`,
+              },
+            },
+          ];
         });
       };
       socket.onerror = (error) => console.error("WebSocket error:", error);
       return () => socket.close();
     }
   }, [socket]);
-  console.log(messages);
 
   const [visibleMessages, setVisibleMessages] = useState([]);
-
   const addMessageGradually = useCallback(() => {
-    setVisibleMessages((prev) => {
-      if (prev.length < messages.length) {
-        return [...prev, messages[prev.length]];
-      } else {
-        return messages;
-      }
-    });
-  }, [messages]);
+    const lastMsgTime = new Date(messages[messages.length - 1].timeStamp) || [];
+
+    if (Date.now() - lastMsgTime > 600000) {
+      setVisibleMessages((prev) => {
+        if (prev.length < allMesg.length) {
+          return [...prev, allMesg[prev.length]];
+        } else {
+          return allMesg;
+        }
+      });
+    } else {
+      setVisibleMessages((prev) => {
+        if (prev.length < messages.length) {
+          return [...prev, messages[prev.length]];
+        } else {
+          return messages;
+        }
+      });
+    }
+  }, [messages, allMesg]);
 
   useEffect(() => {
-    const interval = setInterval(addMessageGradually, 3000);
+    const interval = setInterval(addMessageGradually, 4000);
     return () => clearInterval(interval);
   }, [addMessageGradually]);
 
@@ -119,7 +134,6 @@ export default function Home() {
       background-color: #808080;
       width: 300px;
       border-radius: 20px;
-      padding: 5px 0;
       text-align: center;
       }
 
@@ -129,7 +143,6 @@ export default function Home() {
       background-color: white;
       width: 300px;
       border-radius: 20px;
-      padding: 5px 0;
       text-align: center;
       }
 
