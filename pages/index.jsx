@@ -52,8 +52,7 @@ export default function Home() {
             {
               ...newMsg,
               position: {
-                top: `${Math.random() * 100 + 20}%`,
-                right: `${Math.random() * 150}%`,
+                top: `${Math.random() * 80}%`,
               },
             },
           ];
@@ -69,8 +68,7 @@ export default function Home() {
             {
               ...newMsg,
               position: {
-                top: `${Math.random() * 100 + 20}%`,
-                right: `${Math.random() * 150}%`,
+                top: `${Math.random() * 80}%`,
               },
             },
           ];
@@ -219,7 +217,6 @@ export default function Home() {
                 key={index}
                 style={{
                   top: msg.position.top,
-                  right: msg.position.right,
                   position: "absolute",
                   fontSize: "36px",
                   fontFamily: '"Edu AU VIC WA NT Hand", cursive',

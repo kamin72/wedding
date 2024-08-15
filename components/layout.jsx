@@ -11,7 +11,7 @@ export default function Layout({ children }) {
 
       <main
         className="bg-color vw-100 overflow-hidden"
-        style={{ height: "2000px" }}>
+        style={{ height: "1300px" }}>
         <div className="container" style={{ height: "1250px" }}>
           {children}
         </div>
