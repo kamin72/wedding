@@ -127,7 +127,7 @@ export default function Home() {
       }
       
       .msgs:nth-child(2n){
-      animation: slider 10s linear infinite;
+      animation: slider 20s linear infinite;
       color: white;
       background-color: #808080;
       width: 300px;
